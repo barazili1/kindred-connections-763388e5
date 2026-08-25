@@ -66,7 +66,6 @@ function CrashPage() {
     setTarget(0);
   };
 
-  const progress = target > 1 ? Math.min(1, (odd - 1) / (target - 1)) : 0;
 
   return (
     <main className="page-bg screen-frame relative min-h-screen pb-12">
