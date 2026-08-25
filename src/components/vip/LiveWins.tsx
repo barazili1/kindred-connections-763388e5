@@ -24,11 +24,11 @@ export function LiveWins({ title = "LIVE DASHBOARD WIN", game = "MegaPari" }: { 
   }, []);
 
   const rows = Array.from({ length: 8 }, (_, i) => ({
-    name: NAMES[i % NAMES.length]!,
-    amount: AMOUNTS[i % AMOUNTS.length]!,
-    mult: MULTS[i % MULTS.length]!,
-    time: `${(i % 9) + 3}s`,
-    hot: i % 3 === 0,
+    name: NAMES[(i + seed) % NAMES.length]!,
+    amount: AMOUNTS[(i + seed * 3) % AMOUNTS.length]!,
+    mult: MULTS[(i + seed * 5) % MULTS.length]!,
+    time: `${((i + seed) % 9) + 3}s`,
+    hot: (i + seed) % 3 === 0,
   }));
   const doubled = [...rows, ...rows];
 
@@ -51,9 +51,9 @@ export function LiveWins({ title = "LIVE DASHBOARD WIN", game = "MegaPari" }: { 
 
       <div className="mb-3 grid grid-cols-3 gap-2">
         {[
-          { l: "لاعب الآن", v: "1,284", i: Activity, c: "text-primary" },
-          { l: "أعلى ربح", v: "$9,700", i: TrendingUp, c: "text-red" },
-          { l: "نسبة الفوز", v: "96.4%", i: TrendingUp, c: "text-success" },
+          { l: "لاعب الآن", v: stats.players.toLocaleString(), i: Activity, c: "text-primary" },
+          { l: "أعلى ربح", v: `$${stats.top.toLocaleString()}`, i: TrendingUp, c: "text-red" },
+          { l: "نسبة الفوز", v: `${stats.rate.toFixed(1)}%`, i: TrendingUp, c: "text-success" },
         ].map((s) => (
           <div key={s.l} className="rounded-2xl border border-border bg-background/50 px-2 py-2 text-center">
             <s.i className={`mx-auto h-3.5 w-3.5 ${s.c}`} />
