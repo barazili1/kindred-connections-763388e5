@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Play, Plane, RotateCcw, ShieldCheck, Zap } from "lucide-react";
+import { Play, RotateCcw, ShieldCheck, Zap } from "lucide-react";
 import { DragonMark, Particles, TopBar } from "@/components/vip/Chrome";
 import { LiveWins } from "@/components/vip/LiveWins";
 import { getPlatform, getUserId, PLATFORMS } from "@/lib/session";
