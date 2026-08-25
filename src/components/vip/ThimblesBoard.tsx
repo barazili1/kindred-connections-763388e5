@@ -51,11 +51,11 @@ export function ThimblesBoard() {
                 "linear-gradient(140deg, oklch(0.45 0.2 253/18%), transparent 60%, oklch(0.5 0.22 27/16%))",
             }}
           >
-            <div className="mx-auto flex w-full max-w-[420px] items-end justify-center gap-3 sm:gap-4">
+            <div className="mx-auto grid w-full max-w-[420px] grid-cols-3 items-end justify-items-center gap-3 sm:gap-4">
               {[0, 1, 2].map((i) => {
                 const up = winner === i;
                 return (
-                  <div key={i} className="flex min-w-0 flex-1 basis-0 flex-col items-center sm:max-w-[130px]">
+                  <div key={i} className="flex w-full min-w-0 flex-col items-center sm:max-w-[130px]">
                     <div className="relative aspect-square w-full">
                       {up && (
                         <img
@@ -64,7 +64,7 @@ export function ThimblesBoard() {
                           loading="lazy"
                           width={512}
                           height={512}
-                          className="absolute left-1/2 top-1/2 h-[34%] w-[34%] -translate-x-1/2 object-contain drop-shadow-[0_0_18px_var(--red)]"
+                          className="absolute left-1/2 top-1/2 h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_0_18px_var(--red)]"
                         />
                       )}
 
@@ -74,8 +74,8 @@ export function ThimblesBoard() {
                         loading="lazy"
                         width={512}
                         height={512}
-                        className="absolute bottom-0 left-1/2 h-full w-full -translate-x-1/2 object-contain transition-transform duration-500"
-                        style={{ transform: `translateX(-50%) translateY(${up ? -45 : 0}%)` }}
+                        className="absolute inset-0 h-full w-full object-contain transition-transform duration-500"
+                        style={{ transform: `translateY(${up ? -45 : 0}%)` }}
                       />
                     </div>
                     <span
