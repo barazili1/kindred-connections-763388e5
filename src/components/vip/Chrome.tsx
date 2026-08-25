@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
-import logo from "@/assets/dragon-logo.png";
+import logo from "@/assets/megavip-logo.png";
 import { cn } from "@/lib/utils";
 
 
@@ -9,7 +9,7 @@ export function DragonMark({ className, size = 40 }: { className?: string; size?
   return (
     <img
       src={logo}
-      alt="Dragon VIP"
+      alt="MEGA VIP"
       width={size}
       height={size}
       className={cn("drop-shadow-[0_0_16px_oklch(0.7_0.2_250/90%)]", className)}
