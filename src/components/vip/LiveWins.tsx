@@ -1,16 +1,34 @@
+import { useEffect, useState } from "react";
 import { Activity, TrendingUp } from "lucide-react";
 
 const NAMES = ["User***k", "Player***9", "Ahmed***3", "Mo***7z", "Sara***1", "Khaled***5", "Vip***x", "Omar***2"];
 const AMOUNTS = ["$150", "500 EGP", "$1,240", "2,300 EGP", "$85", "9,700 EGP", "$420", "1,150 EGP"];
 const MULTS = ["x2.14", "x5.60", "x1.92", "x11.4", "x3.08", "x7.75", "x24.1", "x1.55"];
 
+const rand = (min: number, max: number) => min + Math.random() * (max - min);
+
 export function LiveWins({ title = "LIVE DASHBOARD WIN", game = "MegaPari" }: { title?: string; game?: string }) {
+  const [stats, setStats] = useState({ players: 1284, top: 9700, rate: 96.4 });
+  const [seed, setSeed] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setStats(() => ({
+        players: Math.round(rand(900, 2400)),
+        top: Math.round(rand(3500, 18000) / 50) * 50,
+        rate: Math.round(rand(92, 98.9) * 10) / 10,
+      }));
+      setSeed((s) => s + 1);
+    }, 2000);
+    return () => clearInterval(id);
+  }, []);
+
   const rows = Array.from({ length: 8 }, (_, i) => ({
-    name: NAMES[i % NAMES.length]!,
-    amount: AMOUNTS[i % AMOUNTS.length]!,
-    mult: MULTS[i % MULTS.length]!,
-    time: `${(i % 9) + 3}s`,
-    hot: i % 3 === 0,
+    name: NAMES[(i + seed) % NAMES.length]!,
+    amount: AMOUNTS[(i + seed * 3) % AMOUNTS.length]!,
+    mult: MULTS[(i + seed * 5) % MULTS.length]!,
+    time: `${((i + seed) % 9) + 3}s`,
+    hot: (i + seed) % 3 === 0,
   }));
   const doubled = [...rows, ...rows];
 
@@ -33,9 +51,9 @@ export function LiveWins({ title = "LIVE DASHBOARD WIN", game = "MegaPari" }: { 
 
       <div className="mb-3 grid grid-cols-3 gap-2">
         {[
-          { l: "لاعب الآن", v: "1,284", i: Activity, c: "text-primary" },
-          { l: "أعلى ربح", v: "$9,700", i: TrendingUp, c: "text-red" },
-          { l: "نسبة الفوز", v: "96.4%", i: TrendingUp, c: "text-success" },
+          { l: "لاعب الآن", v: stats.players.toLocaleString(), i: Activity, c: "text-primary" },
+          { l: "أعلى ربح", v: `$${stats.top.toLocaleString()}`, i: TrendingUp, c: "text-red" },
+          { l: "نسبة الفوز", v: `${stats.rate.toFixed(1)}%`, i: TrendingUp, c: "text-success" },
         ].map((s) => (
           <div key={s.l} className="rounded-2xl border border-border bg-background/50 px-2 py-2 text-center">
             <s.i className={`mx-auto h-3.5 w-3.5 ${s.c}`} />
