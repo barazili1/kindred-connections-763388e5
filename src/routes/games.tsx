@@ -5,7 +5,7 @@ import gameApple from "@/assets/game-apple.jpg";
 import gameMines from "@/assets/game-mines.jpg";
 import gameWild from "@/assets/game-wildwest.jpg";
 import gameThimbles from "@/assets/game-thimbles.jpg";
-import { DragonMark, OnlineUsers, Particles, TopBar } from "@/components/vip/Chrome";
+import { DragonMark, Particles, TopBar } from "@/components/vip/Chrome";
 import { saveGame, type GameId } from "@/lib/session";
 
 export const Route = createFileRoute("/games")({
@@ -55,7 +55,7 @@ function GamesPage() {
     <main className="page-bg screen-frame relative min-h-screen pb-16">
       <Particles />
       <div className="relative z-10">
-        <TopBar title="الألعاب" right={<OnlineUsers />} />
+        <TopBar title="الألعاب" />
 
         {/* hero / logo */}
         <section className="flex flex-col items-center px-4 pt-7 text-center">
