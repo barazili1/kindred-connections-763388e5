@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppleRouteImport } from './routes/apple'
+import { Route as ConditionsRouteImport } from './routes/conditions'
+import { Route as CrashRouteImport } from './routes/crash'
+import { Route as GamesRouteImport } from './routes/games'
+import { Route as MinesRouteImport } from './routes/mines'
+import { Route as ThimblesRouteImport } from './routes/thimbles'
+import { Route as WildwestRouteImport } from './routes/wildwest'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppleRoute = AppleRouteImport.update({
+  id: '/apple',
+  path: '/apple',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConditionsRoute = ConditionsRouteImport.update({
+  id: '/conditions',
+  path: '/conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrashRoute = CrashRouteImport.update({
+  id: '/crash',
+  path: '/crash',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesRoute = GamesRouteImport.update({
+  id: '/games',
+  path: '/games',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinesRoute = MinesRouteImport.update({
+  id: '/mines',
+  path: '/mines',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThimblesRoute = ThimblesRouteImport.update({
+  id: '/thimbles',
+  path: '/thimbles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WildwestRoute = WildwestRouteImport.update({
+  id: '/wildwest',
+  path: '/wildwest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/apple': typeof AppleRoute
+  '/conditions': typeof ConditionsRoute
+  '/crash': typeof CrashRoute
+  '/games': typeof GamesRoute
+  '/mines': typeof MinesRoute
+  '/thimbles': typeof ThimblesRoute
+  '/wildwest': typeof WildwestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/apple': typeof AppleRoute
+  '/conditions': typeof ConditionsRoute
+  '/crash': typeof CrashRoute
+  '/games': typeof GamesRoute
+  '/mines': typeof MinesRoute
+  '/thimbles': typeof ThimblesRoute
+  '/wildwest': typeof WildwestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/apple': typeof AppleRoute
+  '/conditions': typeof ConditionsRoute
+  '/crash': typeof CrashRoute
+  '/games': typeof GamesRoute
+  '/mines': typeof MinesRoute
+  '/thimbles': typeof ThimblesRoute
+  '/wildwest': typeof WildwestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/apple'
+    | '/conditions'
+    | '/crash'
+    | '/games'
+    | '/mines'
+    | '/thimbles'
+    | '/wildwest'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/apple'
+    | '/conditions'
+    | '/crash'
+    | '/games'
+    | '/mines'
+    | '/thimbles'
+    | '/wildwest'
+  id:
+    | '__root__'
+    | '/'
+    | '/apple'
+    | '/conditions'
+    | '/crash'
+    | '/games'
+    | '/mines'
+    | '/thimbles'
+    | '/wildwest'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppleRoute: typeof AppleRoute
+  ConditionsRoute: typeof ConditionsRoute
+  CrashRoute: typeof CrashRoute
+  GamesRoute: typeof GamesRoute
+  MinesRoute: typeof MinesRoute
+  ThimblesRoute: typeof ThimblesRoute
+  WildwestRoute: typeof WildwestRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apple': {
+      id: '/apple'
+      path: '/apple'
+      fullPath: '/apple'
+      preLoaderRoute: typeof AppleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conditions': {
+      id: '/conditions'
+      path: '/conditions'
+      fullPath: '/conditions'
+      preLoaderRoute: typeof ConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crash': {
+      id: '/crash'
+      path: '/crash'
+      fullPath: '/crash'
+      preLoaderRoute: typeof CrashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games': {
+      id: '/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof GamesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mines': {
+      id: '/mines'
+      path: '/mines'
+      fullPath: '/mines'
+      preLoaderRoute: typeof MinesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thimbles': {
+      id: '/thimbles'
+      path: '/thimbles'
+      fullPath: '/thimbles'
+      preLoaderRoute: typeof ThimblesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wildwest': {
+      id: '/wildwest'
+      path: '/wildwest'
+      fullPath: '/wildwest'
+      preLoaderRoute: typeof WildwestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppleRoute: AppleRoute,
+  ConditionsRoute: ConditionsRoute,
+  CrashRoute: CrashRoute,
+  GamesRoute: GamesRoute,
+  MinesRoute: MinesRoute,
+  ThimblesRoute: ThimblesRoute,
+  WildwestRoute: WildwestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
