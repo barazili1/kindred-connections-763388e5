@@ -138,7 +138,18 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <PageTransition>
+        <Outlet />
+      </PageTransition>
     </QueryClientProvider>
+  );
+}
+
+function PageTransition({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  return (
+    <div key={pathname} className="animate-page-in">
+      {children}
+    </div>
   );
 }
