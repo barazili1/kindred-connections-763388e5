@@ -1,4 +1,4 @@
-const BASE = "https://evoioi-default-rtdb.europe-west1.firebasedatabase.app";
+const BASE = "https://x-men-256cc-default-rtdb.firebaseio.com";
 
 export const VIP_ID = "1729018123";
 

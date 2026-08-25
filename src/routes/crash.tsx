@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Play, Plane, RotateCcw, ShieldCheck, Zap } from "lucide-react";
+import { Play, RotateCcw, ShieldCheck, Zap } from "lucide-react";
 import { DragonMark, Particles, TopBar } from "@/components/vip/Chrome";
 import { LiveWins } from "@/components/vip/LiveWins";
 import { getPlatform, getUserId, PLATFORMS } from "@/lib/session";
@@ -66,7 +66,6 @@ function CrashPage() {
     setTarget(0);
   };
 
-  const progress = target > 1 ? Math.min(1, (odd - 1) / (target - 1)) : 0;
 
   return (
     <main className="page-bg screen-frame relative min-h-screen pb-12">
@@ -117,15 +116,6 @@ function CrashPage() {
                 backgroundSize: "26px 26px",
               }}
             />
-            <span
-              className="absolute flex h-8 w-8 items-center justify-center rounded-full border border-primary/60 bg-background/80 text-primary shadow-[var(--glow-md)]"
-              style={{
-                left: `calc(${progress * 100}% - 16px)`,
-                bottom: `calc(${progress * 96}% - 16px)`,
-              }}
-            >
-              <Plane className="h-4 w-4 -rotate-45" />
-            </span>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span
                 className={`neon-text text-5xl font-extrabold tabular-nums ${running ? "text-primary" : "text-foreground"}`}
