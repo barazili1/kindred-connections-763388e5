@@ -87,7 +87,7 @@ function GamesPage() {
               >
                 {/* premium card */}
                 <article
-                  className={`group glass relative aspect-square w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
+                  className={`group glass relative aspect-video w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
                   style={{
                     backgroundImage:
                       g.accent === "red"
