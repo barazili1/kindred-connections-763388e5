@@ -121,7 +121,7 @@ function CrashPage() {
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span
-                className={`neon-text text-5xl font-extrabold tabular-nums ${running ? "text-primary" : "text-foreground"}`}
+                className={`neon-text text-5xl font-extrabold tabular-nums transition-colors duration-300 ${running ? "animate-glow-pulse text-primary" : "text-foreground"}`}
               >
                 x{odd.toFixed(2)}
               </span>
