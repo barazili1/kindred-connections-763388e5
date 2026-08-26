@@ -1,6 +1,31 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { DragonMark, Particles } from "@/components/vip/Chrome";
+import gameCrash from "@/assets/game-crash.jpg";
+import gameApple from "@/assets/game-apple.jpg";
+import gameMines from "@/assets/game-mines.jpg";
+import gameWild from "@/assets/game-wildwest.jpg";
+import gameThimbles from "@/assets/game-thimbles.jpg";
+import casinoBg from "@/assets/casino-bg.jpg";
+import megavipLogo from "@/assets/megavip-logo.png";
+import thimbleCup from "@/assets/thimble-cup.png";
+import thimbleBall from "@/assets/thimble-ball.png";
+import gemDiamond from "@/assets/gem-diamond.png";
+import treasureChest from "@/assets/treasure-chest.png";
+import condDeposit from "@/assets/cond-deposit.png";
+import condDownload from "@/assets/cond-download.png";
+import condId from "@/assets/cond-id.png";
+import condPromo from "@/assets/cond-promo.png";
+import condTelegram from "@/assets/cond-telegram.png";
+import platformGeneric from "@/assets/platform-generic.png";
+import logoMegapari from "@/assets/logo-megapari.jpg";
+
+const PRELOAD = [
+  gameCrash, gameApple, gameMines, gameWild, gameThimbles,
+  casinoBg, megavipLogo, thimbleCup, thimbleBall, gemDiamond, treasureChest,
+  condDeposit, condDownload, condId, condPromo, condTelegram,
+  platformGeneric, logoMegapari,
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,13 +50,39 @@ function Splash() {
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
   const [leaving, setLeaving] = useState(false);
+  const [loaded, setLoaded] = useState(0);
+
+  // preload every image used across the app while the splash is showing
+  useEffect(() => {
+    let alive = true;
+    let done = 0;
+    PRELOAD.forEach((src) => {
+      const img = new Image();
+      const tick = () => {
+        done += 1;
+        if (alive) setLoaded(done);
+      };
+      img.onload = tick;
+      img.onerror = tick;
+      img.src = src;
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const assetsReady = loaded >= PRELOAD.length;
 
   useEffect(() => {
     const t = setInterval(() => {
-      setProgress((p) => (p >= 100 ? 100 : Math.min(100, p + Math.random() * 6 + 2)));
+      setProgress((p) => {
+        const cap = assetsReady ? 100 : 92;
+        if (p >= cap) return p;
+        return Math.min(cap, p + Math.random() * 6 + 2);
+      });
     }, 95);
     return () => clearInterval(t);
-  }, []);
+  }, [assetsReady]);
 
   useEffect(() => {
     if (progress >= 100) {
