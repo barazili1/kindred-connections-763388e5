@@ -7,6 +7,7 @@ import gameWild from "@/assets/game-wildwest.jpg";
 import gameThimbles from "@/assets/game-thimbles.jpg";
 import { DragonMark, Particles, TopBar } from "@/components/vip/Chrome";
 import { saveGame, type GameId } from "@/lib/session";
+import { useReveal } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/games")({
   head: () => ({
@@ -49,7 +50,6 @@ const ACCENT = {
 } as const;
 
 function GamesPage() {
-  const navigate = useNavigate();
 
   return (
     <main className="page-bg screen-frame relative min-h-screen pb-16">
