@@ -280,10 +280,4 @@
     transform: translateZ(0);
     backface-visibility: hidden;
   }
-
-  main,
-  section,
-  article {
-    contain: paint;
-  }
 }
