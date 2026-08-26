@@ -100,12 +100,15 @@ function CrashPage() {
           {/* Radar board */}
           <div
             dir="ltr"
-            className="glass relative mt-5 w-full max-w-[352px] overflow-hidden rounded-[24px]"
-            style={{
-              height: 230,
-              backgroundImage:
-                "linear-gradient(150deg, oklch(0.45 0.2 253/24%), transparent 55%, oklch(0.5 0.22 27/22%))",
-            }}
+             className={`glass relative mt-5 w-full max-w-[352px] overflow-hidden rounded-[24px] transition-all duration-500 ${running ? "animate-glow-pulse" : ""}`}
+             style={{
+               height: 230,
+               boxShadow: running
+                 ? "0 0 0 1px oklch(0.68 0.26 253.5/60%), 0 0 46px oklch(0.65 0.26 253.5/45%), inset 0 0 40px oklch(0.65 0.26 253.5/18%)"
+                 : "0 0 0 1px oklch(0.68 0.26 253.5/25%), 0 10px 40px oklch(0.02 0.01 253/60%)",
+               backgroundImage:
+                 "linear-gradient(150deg, oklch(0.45 0.2 253/24%), transparent 55%, oklch(0.5 0.22 27/22%))",
+             }}
           >
             <span
               aria-hidden
@@ -118,7 +121,7 @@ function CrashPage() {
             />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span
-                className={`neon-text text-5xl font-extrabold tabular-nums ${running ? "text-primary" : "text-foreground"}`}
+                className={`neon-text text-5xl font-extrabold tabular-nums transition-colors duration-300 ${running ? "animate-glow-pulse text-primary" : "text-foreground"}`}
               >
                 x{odd.toFixed(2)}
               </span>

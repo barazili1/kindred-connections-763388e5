@@ -64,7 +64,7 @@ export function ThimblesBoard() {
                           loading="lazy"
                           width={512}
                           height={512}
-                          className="absolute left-1/2 top-1/2 h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_0_18px_var(--red)]"
+                          className="absolute left-1/2 top-1/2 h-[52%] w-[52%] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_0_22px_var(--red)]"
                         />
                       )}
 
