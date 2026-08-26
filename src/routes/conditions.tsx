@@ -259,10 +259,10 @@ function ConditionsPage() {
             >
               <div className="grid grid-cols-2 gap-2">
                 <span className="rounded-[12px] border border-red/50 bg-red/10 py-2 text-center text-[11px] font-extrabold text-red">
-                  200 EGP
+                  300 EGP
                 </span>
                 <span className="rounded-[12px] border border-primary/50 bg-primary/10 py-2 text-center text-[11px] font-extrabold text-primary">
-                  4 USD
+                  6 USD
                 </span>
               </div>
             </Panel>
