@@ -77,14 +77,27 @@ function GamesPage() {
 
         {/* cards */}
         <section className="mt-6 flex flex-col items-center gap-5 px-3">
-          {GAMES.map((g, i) => {
-            const a = ACCENT[g.accent];
-            return (
-              <div
-                key={g.name}
-                className="animate-fade-up flex w-full max-w-[350px] flex-col gap-2.5"
-                style={{ animationDelay: `${i * 110}ms` }}
-              >
+          {GAMES.map((g, i) => (
+            <GameCard key={g.name} g={g} i={i} />
+          ))}
+        </section>
+      </div>
+    </main>
+  );
+}
+
+function GameCard({ g, i }: { g: Game; i: number }) {
+  const navigate = useNavigate();
+  const a = ACCENT[g.accent];
+  const { ref, shown } = useReveal<HTMLDivElement>();
+
+  return (
+    <div
+      ref={ref}
+      className={`reveal ${shown ? "reveal-in" : ""} flex w-full max-w-[350px] flex-col gap-2.5`}
+      style={{ transitionDelay: `${(i % 3) * 90}ms` }}
+    >
+
                 {/* premium card */}
                 <article
                   className={`group glass relative aspect-video w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
@@ -147,11 +160,7 @@ function GamesPage() {
                   <Play className="h-4 w-4" /> العب الآن
                   <ChevronLeft className="h-4 w-4 opacity-70" />
                 </button>
-              </div>
-            );
-          })}
-        </section>
-      </div>
-    </main>
+    </div>
   );
 }
+
