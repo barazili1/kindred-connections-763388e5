@@ -264,5 +264,20 @@
 }
 
 @utility animate-page-in {
-  animation: page-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: page-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+/* global smoothness */
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img,
+  canvas,
+  video {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }
