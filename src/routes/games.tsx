@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { ChevronLeft, Gamepad2, Play, Sparkles } from "lucide-react";
+import { ChevronLeft, Gamepad2, Play } from "lucide-react";
 import gameCrash from "@/assets/game-crash.jpg";
 import gameApple from "@/assets/game-apple.jpg";
 import gameMines from "@/assets/game-mines.jpg";
