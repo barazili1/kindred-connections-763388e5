@@ -64,9 +64,6 @@ function GamesPage() {
             <span className="absolute h-28 w-28 rounded-full bg-red/15 blur-2xl" />
             <DragonMark size={80} className="relative" />
           </div>
-          <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[9px] font-bold tracking-[0.35em] text-primary">
-            <Sparkles className="h-3 w-3" /> VIP TOOLS
-          </span>
           <h2 className="neon-text mt-2.5 flex items-center gap-2 text-xl font-extrabold text-foreground">
             <Gamepad2 className="h-5 w-5 text-primary" /> اختار اللعبة المطلوبة
           </h2>
@@ -100,7 +97,7 @@ function GameCard({ g, i }: { g: Game; i: number }) {
 
                 {/* premium card */}
                 <article
-                  className={`group glass relative h-[100px] w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
+                  className={`group glass relative h-[150px] w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
                   style={{
                     backgroundImage:
                       g.accent === "red"
@@ -127,7 +124,7 @@ function GameCard({ g, i }: { g: Game; i: number }) {
                     loading="lazy"
                     width={512}
                     height={512}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
                   />
 
                   {/* bottom shade */}
