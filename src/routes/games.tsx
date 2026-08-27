@@ -52,27 +52,31 @@ const ACCENT = {
 function GamesPage() {
 
   return (
-    <main className="page-bg screen-frame relative flex min-h-screen flex-col overflow-hidden">
+    <main className="page-bg screen-frame relative min-h-screen pb-16">
       <Particles />
-      <div className="relative z-10 flex min-h-screen flex-col">
+      <div className="relative z-10">
         <TopBar title="الألعاب" />
 
         {/* hero / logo */}
-        <section className="flex flex-col items-center px-4 pt-2 text-center">
+        <section className="flex flex-col items-center px-4 pt-7 text-center">
           <div className="relative flex items-center justify-center">
-            <span className="animate-glow-pulse absolute h-16 w-16 rounded-full bg-primary/25 blur-3xl" />
-            <DragonMark size={44} className="relative" />
+            <span className="animate-glow-pulse absolute h-28 w-28 rounded-full bg-primary/25 blur-3xl" />
+            <span className="absolute h-28 w-28 rounded-full bg-red/15 blur-2xl" />
+            <DragonMark size={80} className="relative" />
           </div>
-          <span className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-2.5 py-0.5 text-[8px] font-bold tracking-[0.3em] text-primary">
-            <Sparkles className="h-2.5 w-2.5" /> VIP TOOLS
+          <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-[9px] font-bold tracking-[0.35em] text-primary">
+            <Sparkles className="h-3 w-3" /> VIP TOOLS
           </span>
-          <h2 className="neon-text mt-1.5 flex items-center gap-2 text-[15px] font-extrabold text-foreground">
-            <Gamepad2 className="h-4 w-4 text-primary" /> اختار اللعبة المطلوبة
+          <h2 className="neon-text mt-2.5 flex items-center gap-2 text-xl font-extrabold text-foreground">
+            <Gamepad2 className="h-5 w-5 text-primary" /> اختار اللعبة المطلوبة
           </h2>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            اضغط «العب الآن» لبدء تشغيل أداة الكشف
+          </p>
         </section>
 
         {/* cards */}
-        <section className="mx-auto mt-2 flex w-full max-w-[380px] flex-1 flex-col justify-center gap-2 px-3 pb-3">
+        <section className="mt-6 flex flex-col items-center gap-5 px-3">
           {GAMES.map((g, i) => (
             <GameCard key={g.name} g={g} i={i} />
           ))}
@@ -90,50 +94,73 @@ function GameCard({ g, i }: { g: Game; i: number }) {
   return (
     <div
       ref={ref}
-      className={`reveal ${shown ? "reveal-in" : ""} w-full`}
-      style={{ transitionDelay: `${(i % 3) * 70}ms` }}
+      className={`reveal ${shown ? "reveal-in" : ""} flex w-full max-w-[350px] flex-col gap-2.5`}
+      style={{ transitionDelay: `${(i % 3) * 90}ms` }}
     >
-      <button
-        onClick={() => {
-          saveGame(g.id);
-          navigate({ to: g.to });
-        }}
-        className={`group glass relative grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2.5 overflow-hidden rounded-[14px] p-1.5 text-right transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.99] ${a.ring}`}
-        style={{
-          backgroundImage:
-            g.accent === "red"
-              ? "linear-gradient(115deg, oklch(0.5 0.22 27 / 24%), transparent 65%)"
-              : "linear-gradient(115deg, oklch(0.45 0.2 253 / 26%), transparent 65%)",
-        }}
-      >
-        <img
-          src={g.img}
-          alt={g.name}
-          loading="lazy"
-          width={256}
-          height={144}
-          className="h-12 w-[86px] shrink-0 rounded-[10px] object-cover transition-transform duration-500 group-hover:scale-105"
-        />
 
-        <span className="flex min-w-0 flex-col">
-          <span className="truncate text-[13px] font-extrabold text-foreground">{g.name}</span>
-          <span className="truncate text-[9px] text-muted-foreground">{g.ar}</span>
-        </span>
+                {/* premium card */}
+                <article
+                  className={`group glass relative aspect-video w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
+                  style={{
+                    backgroundImage:
+                      g.accent === "red"
+                        ? "linear-gradient(125deg, oklch(0.5 0.22 27 / 26%), transparent 62%)"
+                        : "linear-gradient(125deg, oklch(0.45 0.2 253 / 28%), transparent 62%)",
+                  }}
+                >
+                  {/* corner index */}
+                  <span className="absolute left-2.5 top-2.5 z-20 flex h-6 w-6 items-center justify-center rounded-full border border-border bg-background/60 text-[10px] font-extrabold text-muted-foreground backdrop-blur">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
 
-        <span className="flex shrink-0 items-center gap-1.5">
-          <span
-            className={`rounded-full border px-1.5 py-0.5 text-[7px] font-extrabold tracking-[0.15em] ${a.chip}`}
-          >
-            {g.tag}
-          </span>
-          <span className="flex items-center gap-1 rounded-[10px] bg-primary px-2.5 py-2 text-[11px] font-extrabold text-primary-foreground shadow-[var(--glow-sm)]">
-            <Play className="h-3 w-3" /> العب
-            <ChevronLeft className="h-3 w-3 opacity-70" />
-          </span>
-        </span>
-      </button>
+                  {/* tag */}
+                  <span
+                    className={`absolute right-2.5 top-2.5 z-20 rounded-full border px-2 py-0.5 text-[8px] font-extrabold tracking-[0.2em] backdrop-blur ${a.chip}`}
+                  >
+                    {g.tag}
+                  </span>
+
+                  {/* logo fills card */}
+                  <img
+                    src={g.img}
+                    alt={g.name}
+                    loading="lazy"
+                    width={512}
+                    height={512}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  {/* bottom shade */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
+                    style={{
+                      background:
+                        "linear-gradient(to top, oklch(0.03 0.012 253 / 94%), oklch(0.03 0.012 253 / 30%) 45%, transparent)",
+                    }}
+                  />
+
+                  {/* name centered bottom */}
+                  <h3 className="neon-text absolute inset-x-0 bottom-3 text-center text-[17px] font-extrabold text-foreground">
+                    {g.name}
+                  </h3>
+                  <p className="absolute inset-x-0 bottom-0.5 text-center text-[9px] tracking-wide text-muted-foreground">
+                    {g.ar}
+                  </p>
+                </article>
+
+                {/* play button */}
+                <button
+                  onClick={() => {
+                    saveGame(g.id);
+                    navigate({ to: g.to });
+                  }}
+                  className="flex w-full items-center justify-center gap-2 rounded-[12px] bg-primary py-3 text-[13px] font-extrabold text-primary-foreground shadow-[var(--glow-md)] transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <Play className="h-4 w-4" /> العب الآن
+                  <ChevronLeft className="h-4 w-4 opacity-70" />
+                </button>
     </div>
   );
 }
-
 
