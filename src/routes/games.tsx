@@ -94,13 +94,13 @@ function GameCard({ g, i }: { g: Game; i: number }) {
   return (
     <div
       ref={ref}
-      className={`reveal ${shown ? "reveal-in" : ""} flex w-full max-w-[350px] flex-col gap-2.5`}
+      className={`reveal ${shown ? "reveal-in" : ""} flex w-[300px] max-w-full flex-col gap-2.5`}
       style={{ transitionDelay: `${(i % 3) * 90}ms` }}
     >
 
                 {/* premium card */}
                 <article
-                  className={`group glass relative aspect-video w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
+                  className={`group glass relative h-[100px] w-full overflow-hidden rounded-[20px] transition-all duration-300 hover:-translate-y-1 ${a.ring}`}
                   style={{
                     backgroundImage:
                       g.accent === "red"
